@@ -1,34 +1,49 @@
+/*
+Kod bazowy programu Commit4_0: 
+• Program dodaje do prostej bazy danych (pliku db.txt) dane odnośnie Studentów.
+• Studenci dodawani są w klasie Main.
+• Wszyscy studenci są wypisywani na końcu klasy Main.
+• Klasa Service obsługuje odczyt i zapis do pliku bazy danych.
+• Klasa Student reprezentuje pojedynczego studenta (Imię, Wiek).
+*/
+//commit 4.1
 import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.util.Scanner;
+
 class Main {
-public static void main(String[] args) throws IOException {
-try {
-	Service s = new Service();
-	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-	// tworze bufor sluzacy do pobierania danych z konsoli
+  public static void main(String[] args) {
+    try {
+      Service s = new Service();
+      Scanner scan = new Scanner(System.in);
+      while(true){
+      System.out.println("Dokonaj wyboru");
+      System.out.println("1.Dodaj studenta");
+      System.out.println("2. Wyswietl liste studentow");
+      int x = scan.nextInt();scan.nextLine();
+      switch(x){
+        case 1:{
+          System.out.println("Wprowadz imie studenta:");
+          String name = scan.nextLine();
+          System.out.println("Wprowadz nazwisko studenta:");
+          String nazwisko = scan.nextLine();
+          System.out.println("Wprowadz wiek:");
+          int age = scan.nextInt();
+          s.addStudent(new Student(name, nazwisko, age));
+        } break;
+        case 2:{
+          var students = s.getStudents();
+          for(Student current : students){
+            System.out.println(current.ToString());
+          }
+        } break;
+        case 0:{
+          return;
+        }
+      }
+    } 
+    }
+    catch (IOException e) {
 
-	for (;;) {  // nieskonczona petla
-		System.out.println("wybierz opcje: 0 -> exit | 1 -> dodanie do bazy danych");
-		String num = reader.readLine();  // pobieranie danych z konsoli
-		int option = Integer.parseInt(num);  // konwersja stringa do inta
-
-		switch (option) {
-			case 0:
-				System.exit(0);  // wyjscie z programu
-				break;
-			case 1:
-				System.out.println("wprowadz dane w formacie 'imie wiek'");
-        String toParse = reader.readLine();
-				Student newStudent = Student.Parse(toParse);
-				s.addStudent(newStudent);  // dodanie do bazy
-				break;
-			default:
-				System.out.println("bledna opcja!");
-				break;
-		}
-	}
-} catch (IOException e) {
-	}
-}
+    }
+  }
 }
