@@ -23,7 +23,7 @@ public class Student
   public static Student Parse(String str) {
     String[] data = str.split(" ");
     if(data.length != 3) 
-      return new Student("Parse Error", "Nazwisko error", -1);
+
     return new Student(data[0], data[1], Integer.parseInt(data[2]));
   }
 }
