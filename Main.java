@@ -22,13 +22,17 @@ class Main {
       int x = scan.nextInt();scan.nextLine();
       switch(x){
         case 1:{
-          System.out.println("Wprowadz imie studenta:");
+          System.out.println("Wprowadz imie:");
           String name = scan.nextLine();
-          System.out.println("Wprowadz nazwisko studenta:");
+          System.out.println("Wprowadz nazwisko:");
           String nazwisko = scan.nextLine();
           System.out.println("Wprowadz wiek:");
           int age = scan.nextInt();
-          s.addStudent(new Student(name, nazwisko, age));
+          System.out.println("Wprowadz ulice:");scan.nextLine();
+         String ulica = scan.nextLine();
+          System.out.println("Wprowadz date:");
+         String data = scan.nextLine();
+          s.addStudent(new Student(name, nazwisko, age, ulica, data));
         } break;
         case 2:{
           var students = s.getStudents();
